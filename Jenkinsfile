@@ -11,7 +11,10 @@ pipeline {
 
         stage('') {
           steps {
+
             bat(script: 'echo \'hello to build\'', label: 'testecho', returnStatus: true, returnStdout: true)
+
+
           }
         }
 
@@ -36,6 +39,7 @@ pipeline {
     }
 
     stage('deploy') {
+
       parallel {
         stage('deploy') {
           steps {
@@ -48,6 +52,10 @@ pipeline {
             build(job: 'test2Clone', propagate: true, quietPeriod: 2, wait: true)
           }
         }
+
+
+      steps {
+        echo 'Deploy stage'
 
       }
     }
