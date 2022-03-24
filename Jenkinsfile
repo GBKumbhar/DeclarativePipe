@@ -8,9 +8,10 @@ pipeline {
             echo 'Build Stage'
           }
         }
-        stage('') {
+
+        stage('error') {
           steps {
-           bat(script: 'echo \'hello to build\'', label: 'testecho', returnStatus: true, returnStdout: true)
+            bat(script: 'echo \'hello to build\'', label: 'testecho', returnStatus: true, returnStdout: true)
           }
         }
 
@@ -25,7 +26,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
             dir(path: 'test')
           }
@@ -33,22 +34,23 @@ pipeline {
 
       }
     }
-    stage('deploy') {
 
+    stage('deploy') {
       parallel {
         stage('deploy') {
           steps {
             echo 'Deploy stage'
           }
         }
-        stage('') {
+
+        stage('error') {
           steps {
             build(job: 'test2Clone', propagate: true, quietPeriod: 2, wait: true)
           }
         }
+
       }
+    }
 
   }
-  
- }
 }
