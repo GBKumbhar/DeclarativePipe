@@ -49,8 +49,6 @@ pipeline {
       }
 
   }
-  environment {
-    Key = 'Value'
-  }
+  
  }
 }
